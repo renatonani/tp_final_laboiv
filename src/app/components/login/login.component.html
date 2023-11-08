@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <div class="col-md-4 offset-md-4">
+      <div style="margin-top: 200px;" class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Iniciar sesión</h2>
+          <form>
+            <div class="form-group">
+              <label style="margin-left: 10px;" for="usuario">Usuario</label>
+              <input type="text" id="usuario" name="usuario" [(ngModel)]="usuario" class="form-control" placeholder="Usuario">
+            </div>
+            <div style="margin-top: 10px;" class="form-group">
+              <label style="margin-left: 10px;" for="contrasena">Contraseña</label>
+              <input type="password" id="contrasena" name="contrasena" [(ngModel)]="contrasena" class="form-control" placeholder="Contraseña">
+            </div>
+            <div class="botones">
+                <button (click)="logIn()" class="btn btn-primary btn-block mt-2">Iniciar sesión</button>
+                <button (click)="autocompletarAdmin()" class="btn btn-primary btn-block mt-2">Completar con datos de Admin</button>
+                <button (click)="autocompletarEmpleado()" class="btn btn-primary btn-block mt-2">Completar con datos de Paciente</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

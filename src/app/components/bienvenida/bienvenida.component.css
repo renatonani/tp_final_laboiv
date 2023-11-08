@@ -1,0 +1,49 @@
+/* bienvenida.component.css */
+
+.welcome-container {
+    text-align: center;
+    margin-top: 15%;
+  }
+  
+  h1{
+    font-size: 80px;
+    margin-bottom: 50px;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .login-button, .register-button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgb(26, 186, 133);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .login-button:hover, .register-button:hover {
+    background-color: rgb(13, 133, 93);
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,800&display=swap');
+
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+img{
+    width: 200px;
+    border-radius: 9px;
+}
+
+p{
+    margin-top: 15px;
+}
+

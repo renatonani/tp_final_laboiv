@@ -1,0 +1,50 @@
+.custom-button{
+    background-color: rgb(74, 222, 173);
+    border: black;
+    color: black;
+}
+
+.custom-button:hover {
+    background-color: rgb(26, 186, 133);
+}
+
+.custom-button:focus {
+    background-color: rgb(26, 186, 133);
+}
+
+input{
+    width: 600px;
+}
+
+.registro-container {
+    display: flex; /* Utilizamos Flexbox para distribuir las columnas */
+}
+
+.left-column {
+    flex: 1; /* La columna izquierda ocupa el espacio restante */
+    padding: 20px; /* Espacio interior para separar los elementos del borde */
+}
+
+.right-column {
+    width: 250px; /* Ancho fijo para la columna derecha */
+    padding: 20px; /* Espacio interior para separar los elementos del borde */
+    margin-right: 600px;
+}
+img{
+    width: 30px
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,800&display=swap');
+
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+ul{
+    /* max-height: 400px; */    
+    padding-bottom: 20px;
+}
+
+
+
+    

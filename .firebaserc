@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "clinica-f1e73"
+  },
+  "targets": {
+    "clinica-f1e73": {
+      "hosting": {
+        "clinica": [
+          "clinica-f1e73"
+        ]
+      }
+    }
+  }
+}

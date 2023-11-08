@@ -1,0 +1,19 @@
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  .user
+  {    
+    color: black;
+    margin-right: 200px;
+    font-size: 20px;
+  }
+
+  img{
+    height: 50px;
+    margin-left: 20px;
+    border-radius: 5px;
+    border-color: black;
+  }
