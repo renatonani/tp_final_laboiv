@@ -1,27 +1,51 @@
-# Clinica
+# CLINICA DR. D. NANI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+## Bienvenida
 
-## Development server
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/3caec8e9-3428-4348-9cde-91857b756c55)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Iniciar Sesión
 
-## Code scaffolding
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/b182cab3-5c29-494f-aab0-f171f385834e)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Registro Paciente
 
-## Build
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/dba1b778-f86e-49de-8380-d18b49fe2496)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Registro Especialista
 
-## Running unit tests
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/81881165-4c89-4c3f-a53d-9cdc1d86ab64)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Sección Mi Perfil
 
-## Running end-to-end tests
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/aafa08ae-a751-4a38-872e-e7a70b06940c)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Administrar Usuarios (Sólo admin)
 
-## Further help
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/7b789283-d39c-4211-9ed0-aa8cff72cbae)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##Log de ingresos (Sólo admin)
+
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/d31d423c-400e-4bc5-be73-65acea087100)
+
+##Estadísticas (Sólo admin)
+
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/9c8f49d7-8a94-4f8b-9006-29d035151a7e)
+
+##Solicitar turno (Sólo para pacientes y admin)
+
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/4b0faec1-071c-46b4-98cc-e18c6cbbf8b8)
+
+##Mis turnos (Paciente)
+
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/61ce3b43-470d-461d-a4bf-dcf891a1be49)
+
+##Mis turnos (Especialista)
+
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/b3b9f247-136e-4ccc-bd98-de06bb163cf0)
+
+##Pacientes (Especialista)
+
+![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/5ba58149-c5e7-446b-ae26-a5ee833a2639)
+
+
