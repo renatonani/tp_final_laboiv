@@ -18,4 +18,9 @@ export class AppComponent {
     this.auth.logOut();
     this.router.navigateByUrl("/bienvenida");
   }
+
+  mostrar()
+  {
+    console.log(this.auth.usuario)
+  }
 }

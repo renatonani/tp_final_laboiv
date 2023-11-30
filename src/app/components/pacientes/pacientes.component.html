@@ -1,0 +1,53 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Pacientes</h3>
+      <div *ngFor="let paciente of pacientes" class="mb-3">
+        <div style="display: flex; flex-direction: row;" class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ paciente.nombre }} {{ paciente.apellido }}</h5>
+            <p class="card-text">DNI: {{ paciente.DNI }}</p>
+            <p class="card-text">Edad: {{ paciente.edad }}</p>
+            <p class="card-text">Obra social: {{ paciente.obraSocial }}</p>
+            <button class="btn btn-primary" (click)="obtenerUltimosTurnos(paciente.id)">Ver últimos turnos</button>
+          </div>
+          <img style="height: 100px; width: 100px; margin-top: 25px; margin-right: 25px;" [src]="paciente.foto1" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h5 class="card-title text-center">Últimos 3 turnos</h5>
+            <div *ngIf="ultimosTurnos && ultimosTurnos.length > 0; else noTurnos">
+              <div *ngFor="let turno of ultimosTurnos; let last = last">
+                <div class="card mt-3" [class.border-bottom]="!last">
+                  <div class="card-body">
+                    <div *ngIf="turno.paciente">
+                      <strong>Paciente:</strong> {{ turno.paciente.nombre }} {{ turno.paciente.apellido }}<br>  
+                      <strong>Dia y horario:</strong> {{ turno.dia }} {{ turno.horario }}<br>
+                      <strong>Especialidad:</strong> {{ turno.especialidad}}<br>  
+                      <strong>Especialista:</strong> {{ turno.historiaClinica.especialista }}<br>
+                      <strong>Altura:</strong> {{ turno.historiaClinica.altura }}<br>
+                      <strong>Peso:</strong> {{ turno.historiaClinica.peso }}<br>
+                      <strong>Temperatura:</strong> {{ turno.historiaClinica.temperatura }}<br>
+                      <strong>Presión:</strong> {{ turno.historiaClinica.presion }}<br>
+                      
+                      <strong>Datos Dinámicos:</strong>
+                      <ul>
+                        <ng-container *ngFor="let dato of turno.historiaClinica.datosDinamicos">
+                          <ng-container *ngIf="dato.clave !== '' && dato.valor !== ''">
+                            <li>
+                              <strong>{{ dato.clave }}:</strong> {{ dato.valor }}
+                            </li>
+                          </ng-container>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #noTurnos>
+                
+            </ng-template>
+  </div>
+</div>

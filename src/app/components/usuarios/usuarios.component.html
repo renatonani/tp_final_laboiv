@@ -1,0 +1,34 @@
+<div [@fadeInOut]>
+  <h5 class="card-title text-center">Historias clínicas</h5>
+              <div *ngIf="historias && historias.length > 0; else noHistorias">
+                <div *ngFor="let historia of historias; let last = last">
+                  <div class="card mt-3" [class.border-bottom]="!last">
+                    <div class="card-body">
+                      <h6 class="card-subtitle mb-2 text-muted">Fecha: {{ historia.fecha }}</h6>
+                      <div>
+                        <strong>Especialista:</strong> {{ historia.especialista }}<br>
+                        <strong>Paciente:</strong> {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}<br>
+                        <strong>Altura:</strong> {{ historia.altura }}<br>
+                        <strong>Peso:</strong> {{ historia.peso }}<br>
+                        <strong>Temperatura:</strong> {{ historia.temperatura }}<br>
+                        <strong>Presión:</strong> {{ historia.presion }}<br>
+                        
+                        <strong>Datos Dinámicos:</strong>
+                        <ul>
+                          <ng-container *ngFor="let dato of historia.datosDinamicos">
+                            <ng-container *ngIf="dato.clave !== '' && dato.valor !== ''">
+                              <li>
+                                <strong>{{ dato.clave }}:</strong> {{ dato.valor }}
+                              </li>
+                            </ng-container>
+                          </ng-container>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-template #noHistorias>
+                <p>No hay historias clínicas registradas.</p>
+              </ng-template>
+</div>

@@ -1,0 +1,57 @@
+<div *ngIf="ingresos && ingresos.length > 0" class="text-center">
+    <h2 class="mb-4">Lista de Ingresos</h2>
+    <div class="d-flex justify-content-center">
+      <table style="margin-right: 100px; margin-left: 100px;" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Fecha y Hora</th>
+            <th>Tipo de Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ingreso of ingresos">
+            <td>{{ ingreso.usuario.nombre }} {{ ingreso.usuario.apellido }}</td>
+            <td>{{ ingreso.timestap }}</td>
+            <td>{{ ingreso.tipo }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<div *ngIf="!ingresos || ingresos.length === 0" class="text-center">
+    <p>No hay ingresos para mostrar.</p>
+</div>
+<div id="graficos" style="justify-content: center;" class="graficos">
+  <div style="display: flex; flex-direction: column; justify-content: center;">
+    <div id="bar" style="margin-top: 100px; width: 20rem; height: 20rem; font-family: 'Raleway', sans-serif;"></div>
+    <button (click)="exportPDF('bar')" class="btn btn-warning">Descargar PDF</button>
+  </div>
+    <div style="margin-left: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div id="pie" style="width: 20rem; height: 20rem;"></div>
+        <label style="text-align: center;"> Cantidad de turnos por día</label>
+        <button (click)="exportPDF('pie')"  class="btn btn-warning">Descargar PDF</button>
+    </div>
+    <div style="margin-left: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <h2 style="width: 200px; text-align: center;">Cantidad de turnos solicitados por médico</h2>
+      <div id="bar2" style="width: 20rem; height: 20rem; font-family: 'Raleway', sans-serif;"></div>
+      <label for="rangoFechas">Selecciona un rango de fechas:</label>
+      <input style="width: 200px;" type="date" id="rangoFechasInicio" [(ngModel)]="rangoFechas[0]" />
+      <label for="rangoFechas">hasta</label>
+      <input style="width: 200px;" type="date" id="rangoFechasFin" [(ngModel)]="rangoFechas[1]" />
+      <button style="width: 200px;"  type="button" class="btn btn-success" (click)="buscarDatos('pendiente')">Buscar Datos</button>
+      <button (click)="exportPDF('bar2')" class="btn btn-warning">Descargar PDF</button>
+    </div>
+    <div style="margin-left: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <h2 style="width: 200px; text-align: center;">Cantidad de turnos finalizados por médico</h2>
+      <div id="bar3" style="width: 20rem; height: 20rem; font-family: 'Raleway', sans-serif;"></div>
+      <label for="rangoFechas">Selecciona un rango de fechas:</label>
+      <input style="width: 200px;" type="date" id="rangoFechasInicio" [(ngModel)]="rangoFechas2[0]" />
+      <label for="rangoFechas">hasta</label>
+      <input style="width: 200px;" type="date" id="rangoFechasFin" [(ngModel)]="rangoFechas2[1]" />
+      <button style="width: 200px;" type="button" class="btn btn-success" (click)="buscarDatos('realizado')">Buscar Datos</button>
+      <button (click)="exportPDF('bar3')"class="btn btn-warning">Descargar PDF</button>
+    </div>
+</div>
+
+  

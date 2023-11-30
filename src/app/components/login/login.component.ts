@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeInOut } from 'src/app/app.animations';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import Swal from 'sweetalert2';
@@ -7,13 +8,17 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [fadeInOut]
 })
 export class LoginComponent implements OnInit{
   usuario: any;
   contrasena: any;
   admins: any;
   especialistas: any;
+  pacientes: any;
+  botonSeleccionado: any;
+  banderaEspecialista: any;
   constructor(private auth : AuthService, private router : Router, 
               private firestore : FirestoreService){}
 
@@ -22,16 +27,25 @@ export class LoginComponent implements OnInit{
   {
     this.admins = await this.firestore.getAdmins();
     this.especialistas = await this.firestore.getEspecialistas();
-  }
-  
-  autocompletarAdmin() {
-    this.usuario = "renatonani1@gmail.com";
-    this.contrasena = '123456';
-  }
+    this.pacientes = await this.firestore.getPacientes();
+  } 
 
-  autocompletarEmpleado() {
-    this.usuario = 'renatonani2@gmail.com';
-    this.contrasena = '123456';
+  seleccionarBoton(boton: string)
+  {
+    if(boton != this.botonSeleccionado)
+    {
+      this.botonSeleccionado = boton;    
+    }
+    else{
+      this.botonSeleccionado = "";
+    }
+  }
+    
+
+  autoCompletar(correo: string,contraseña: string)
+  {
+    this.usuario = correo;
+    this.contrasena = contraseña;
   }
 
   async logIn()
@@ -51,12 +65,13 @@ export class LoginComponent implements OnInit{
               this.auth.logeado = true;
               this.auth.admin = true;
               this.auth.usuario = await this.firestore.getUserById(admin.id, "admins");
+              this.firestore.registrarIngreso(this.auth.usuario.id);
               this.router.navigate(['/bienvenida']);              
             }
           });
           if(userCredential.user.emailVerified)
           {
-            let banderaEspecialista = false;
+            this.banderaEspecialista = false;
             this.especialistas.forEach(async (especialista: any) => {
               if(especialista.id == userCredential.user?.uid)
               {
@@ -64,11 +79,11 @@ export class LoginComponent implements OnInit{
                 {
                   this.auth.logeado = true;
                   this.auth.usuario = await this.firestore.getUserById(especialista.id, "especialistas");
-                  this.router.navigate(['/bienvenida']);
-                  console.log("hola")
+                  this.banderaEspecialista = true;
+                  this.firestore.registrarIngreso(this.auth.usuario.id);
+                  this.router.navigateByUrl("/bienvenida");               
                 }
-                else{
-                  banderaEspecialista = true;
+                else{                  
                   Swal.fire({
                     icon: 'warning',
                     title: 'Un administrador debe aprobar tu cuenta',
@@ -77,12 +92,13 @@ export class LoginComponent implements OnInit{
                   });
                 }
               }
-            });
-            if(banderaEspecialista == false)
+            });            
+            if(!this.auth.logeado)
             {
               this.auth.logeado = true;
               this.auth.usuario = await this.firestore.getUserById(userCredential.user.uid, "pacientes");
-              this.router.navigate(['/bienvenida']);
+              this.firestore.registrarIngreso(this.auth.usuario.id);
+              this.router.navigateByUrl("/bienvenida");
             }
           }
           else{

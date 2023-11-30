@@ -1,15 +1,18 @@
 <div>  
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand">CLINICA DR. NANI</a>      
+      <a class="navbar-brand">CLINICA DR. D. NANI</a>      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul appDirectiva2 class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" routerLink="/bienvenida">Inicio</a>
           </li>
+          <li *ngIf="auth.logeado" class="nav-item">
+            <a class="nav-link" routerLink="/perfil">Mi perfil</a>
+          </li>  
           <li *ngIf="!auth.logeado" class="nav-item">                
             <a class="nav-link" routerLink="/login">Ingreso</a>
           </li>
@@ -18,13 +21,31 @@
           </li>   
           <li *ngIf="auth.admin" class="nav-item">
             <a class="nav-link" routerLink="/seccion-usuarios">Administrar usuarios</a>
+          </li>            
+          <li class="nav-item" *ngIf="auth.logeado && auth.usuario && auth.usuario.rol != 'especialista'">
+            <a class= "nav-link" routerLink="/solicitar-turno">Solicitar turno</a>
           </li>  
+          <li class="nav-item" *ngIf="auth.logeado && auth.usuario && auth.usuario.rol == 'paciente'">
+            <a class= "nav-link" routerLink="/mis-turnos">Mis turnos</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.logeado && auth.usuario && auth.usuario.rol == 'especialista'">
+            <a class= "nav-link" routerLink="/mis-turnos-especialista">Mis turnos</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.logeado && auth.usuario && auth.usuario.rol == 'especialista'">
+            <a class= "nav-link" routerLink="/pacientes">Pacientes</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.logeado && auth.usuario && auth.usuario.rol == 'admin'">
+            <a class= "nav-link" routerLink="/turnos">Turnos</a>
+          </li>
+          <li class="nav-item" *ngIf="auth.logeado && auth.usuario && auth.usuario.rol == 'admin'">
+            <a class= "nav-link" routerLink="/estadisticas">Estadísticas</a>
+          </li>
           <li class="nav-item" *ngIf="auth.logeado">
             <a style="color: brown;" class="nav-link" (click)="cerrarSesion()">Cerrar sesión</a>
-          </li>          
+          </li>         
         </ul>
       </div>
-      <div class="user" *ngIf="auth.logeado">
+      <div class="user" *ngIf="auth.logeado && auth.usuario">
         <a><strong>Bienvenido de nuevo {{auth.usuario.nombre}}</strong></a>
         <img [src]="auth.usuario.foto1" alt="">
       </div>      

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -7,16 +7,18 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./especialidades.component.css']
 })
 export class EspecialidadesComponent implements OnInit{
-  especialidades: any;
+  
   nuevaEspecialidad: string = '';
 
   @Output() especialidadSeleccionada = new EventEmitter<string>();
+  @Input() mostrarBotonAgregar: boolean = true; // Variable de entrada para mostrar u ocultar el botón
+  @Input() especialidades: any;
   
   constructor(private firestore:FirestoreService){}
 
   async ngOnInit()
   {
-    this.especialidades = await this.firestore.getEspecialidades();
+    
   }
 
   async agregarEspecialidad()

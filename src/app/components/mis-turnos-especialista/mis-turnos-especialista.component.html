@@ -1,0 +1,54 @@
+<div [@fadeInOut] class="container mt-4">
+    <h1>Mis Turnos</h1>        
+    <div *ngIf="turnos && turnos.length > 0; else noTurnos">             
+        <table class="table table-striped">
+            <thead>
+              <!-- Agrega este input en la sección de encabezados de la tabla -->
+              <th style="font-size: 30px;" scope="col">Buscar</th>
+              <th scope="col">
+                <input style="width: 300px;" type="text" [(ngModel)]="termineBusqueda" class="form-control" placeholder="Ingrese término de búsqueda">
+              </th>
+            <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Paciente</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Historia médica</th>
+                <!-- Agrega más encabezados según las propiedades de tus turnos -->
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let turno of turnos | filtroTurnos2: termineBusqueda">
+                <td>{{ turno.dia }}</td>
+                <td>{{ turno.horario }}</td>
+                <td>{{ turno.paciente.nombre }} {{ turno.paciente.apellido }}</td>
+                <td>{{ turno.especialidad }}</td>
+                <!-- Ajusta las propiedades según tu modelo de datos -->
+                <td>
+                    <!-- Botón "Cancelar" que se muestra si el estado no es "realizado" ni "rechazado" -->
+                    <button *ngIf="turno.estado == 'pendiente'" class="btn btn-danger" (click)="cancelarTurno(turno)">Rechazar</button>
+                    <button *ngIf="turno.estado == 'pendiente'" class="btn btn-success" (click)="aceptarTurno(turno)">Aceptar</button>
+                    <button *ngIf="turno.resenia" class="btn btn-primary" (click)="verResenia(turno)">Ver reseña</button>
+                    <button *ngIf="turno.estado == 'aceptado'" class="btn btn-warning" (click)="completarResenia(turno)">Finalizar turno</button>     
+                    <button *ngIf="turno.historiaClinica === false" class="btn btn-warning" (click)="ingresarHistoriaClinica(turno)">Cargar Historia C.</button>              
+                </td>
+                <td>
+                    {{ turno.estado === 'cancelado' || turno.estado === 'rechazado' ? turno.estado + ' - (' + turno.motivo + ')' : turno.estado }}
+                </td>
+                <td *ngIf="turno.historiaClinicaData">
+                    {{ formatJSON(turno.historiaClinicaData) }}
+                  </td>
+                  <td *ngIf="!turno.historiaClinicaData">
+                    No cargada
+                  </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noTurnos>
+      <p>No tienes turnos registrados.</p>
+    </ng-template>   
+
+  </div>

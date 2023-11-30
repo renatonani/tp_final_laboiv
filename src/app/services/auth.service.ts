@@ -8,8 +8,8 @@ export class AuthService {
 
   logeado = false;
   admin = false;
-  usuario : any;
-
+  usuario: any;
+  
   constructor(private afAuth: AngularFireAuth) { 
 
   }
@@ -49,4 +49,14 @@ export class AuthService {
       });
     });
   }  
+
+  public async getCurrentUser()
+  {
+    return await this.afAuth.currentUser;
+  }
+
+  public async updateCurrentUser(user:any){
+    this.afAuth.updateCurrentUser(user);
+  }
+  
 }

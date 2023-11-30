@@ -1,9 +1,30 @@
 .custom-button{
     background-color: rgb(74, 222, 173);
     border: black;
-    color: black;
+    color: black;    
+    height: 300px;
+    width: 300px;
+    margin-bottom: 30px;
+}
+.custom-button2{
+    background-color: rgb(74, 222, 173);
+    border: black;
+    color: black;        
 }
 
+.contenedor{
+    display: flex;
+}
+
+img{
+    width: 250px;
+    height: 250px;
+}
+
+.botones{
+    display: flex;
+    flex-direction: column;
+}
 .custom-button:hover {
     background-color: rgb(26, 186, 133);
 }
@@ -36,3 +57,16 @@ input{
 *{
     font-family: 'Raleway', sans-serif;
 }
+
+/* Clase para la animación de entrada del formulario */
+.ng-enter {
+    transition: all 0.5s;
+    opacity: 0;
+    max-height: 0;
+  }
+  
+  /* Clase para la animación de salida del formulario */
+  .ng-enter.ng-enter-active {
+    opacity: 1;
+    max-height: 500px; /* Ajusta este valor al máximo esperado del formulario */
+  }

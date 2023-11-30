@@ -1,10 +1,11 @@
 <h2 class="mt-3">Especialidades</h2>
-<ul class="list-group">
-  <li style="width: 400px;" *ngFor="let especialidad of especialidades" class="list-group-item" (click)="seleccionarEspecialidad(especialidad.nombre)">
+<div class="list-group">
+  <button style="width: 400px;" *ngFor="let especialidad of especialidades" class="list-group-item list-group-item-action" (click)="seleccionarEspecialidad(especialidad.nombre)">
+    <img style="height: 50px; width: 50px;" [src]="especialidad.foto" alt="">
     {{ especialidad.nombre }}
-  </li>
-</ul>
-<div class="input-group mt-3">
+  </button>
+</div>
+<div class="input-group mt-3" *ngIf="mostrarBotonAgregar">
   <input style="width: 600px; border-radius: 5px;" [(ngModel)]="nuevaEspecialidad" placeholder="Nueva especialidad" />
   <div class="input-group-append">
     <button style="background-color: rgb(0, 104, 69); margin-top: 10px;" (click)="agregarEspecialidad()" class="btn btn-primary">Agregar</button>

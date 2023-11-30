@@ -1,25 +1,49 @@
-<div class="container mt-5">
-    <div class="col-md-4 offset-md-4">
-      <div style="margin-top: 200px;" class="card">
-        <div class="card-body">
-          <h2 class="card-title text-center">Iniciar sesión</h2>
-          <form>
-            <div class="form-group">
-              <label style="margin-left: 10px;" for="usuario">Usuario</label>
-              <input type="text" id="usuario" name="usuario" [(ngModel)]="usuario" class="form-control" placeholder="Usuario">
-            </div>
-            <div style="margin-top: 10px;" class="form-group">
-              <label style="margin-left: 10px;" for="contrasena">Contraseña</label>
-              <input type="password" id="contrasena" name="contrasena" [(ngModel)]="contrasena" class="form-control" placeholder="Contraseña">
-            </div>
-            <div class="botones">
-                <button (click)="logIn()" class="btn btn-primary btn-block mt-2">Iniciar sesión</button>
-                <button (click)="autocompletarAdmin()" class="btn btn-primary btn-block mt-2">Completar con datos de Admin</button>
-                <button (click)="autocompletarEmpleado()" class="btn btn-primary btn-block mt-2">Completar con datos de Paciente</button>
-            </div>
-          </form>
-        </div>
+<div [@fadeInOut] class="container mt-5">
+  <div class="col-md-4 offset-md-4">
+    <div style="margin-top: 200px;" class="card">
+      <div class="card-body">
+        <h2 class="card-title text-center">Iniciar sesión</h2>
+        <form>
+          <div class="form-group">
+            <label style="margin-left: 10px;" for="usuario">Usuario</label>
+            <input type="text" id="usuario" name="usuario" [(ngModel)]="usuario" class="form-control" placeholder="Usuario">
+          </div>
+          <div style="margin-top: 10px;" class="form-group">
+            <label style="margin-left: 10px;" for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" [(ngModel)]="contrasena" class="form-control" placeholder="Contraseña">
+          </div>
+          <div class="botones">
+            <button appDirectiva3 (click)="logIn()" class="btn btn-primary btn-block mt-2">Iniciar sesión</button>            
+          </div>
+        </form>
       </div>
     </div>
   </div>
+  <div class="buttons-container">
+    <button appDirectiva3 class="button" (click)="seleccionarBoton('Paciente')"><img src="../../../assets/login.svg" alt=""></button>
+      <label for="">Paciente</label>
+      <button class="button" *ngIf="botonSeleccionado == 'Paciente'" >
+        <img (click)="autoCompletar(pacientes[0].mail, pacientes[0].password)" class="img" [src]="pacientes[0].foto1" alt="">
+      </button>
+      <button (click)="autoCompletar(pacientes[1].mail, pacientes[1].password)" class="button" *ngIf="botonSeleccionado == 'Paciente'" ><img class="img" [src]="pacientes[1].foto1" alt="">
+      </button>
+      <button (click)="autoCompletar(pacientes[2].mail, pacientes[2].password)" class="button" *ngIf="botonSeleccionado == 'Paciente'" >
+        <img class="img" [src]="pacientes[2].foto1" alt=""></button>
+      <button appDirectiva3 class="button" (click)="seleccionarBoton('Especialista')">
+        <img src="../../../assets/login.svg" alt="">
+      </button>
+    <label for="">Especialista</label>
+    <button class="button" *ngIf="botonSeleccionado == 'Especialista'" >
+      <img (click)="autoCompletar(especialistas[0].mail, especialistas[0].password)" class="img" [src]="especialistas[0].foto1" alt="">
+    </button>
+    <button class="button" *ngIf="botonSeleccionado == 'Especialista'" >
+      <img (click)="autoCompletar(especialistas[1].mail, especialistas[0].password)" class="img" [src]="especialistas[1].foto1" alt="">
+    </button>
+    <button appDirectiva3 class="button" (click)="seleccionarBoton('Admin')"><img src="../../../assets/login.svg" alt=""></button>
+    <label for="">Admin</label>
+    <button class="button" *ngIf="botonSeleccionado == 'Admin'">
+      <img (click)="autoCompletar(admins[1].mail, admins[1].password)" class="img" [src]="admins[1].foto1" alt="">
+    </button>
+  </div>
+</div>
   

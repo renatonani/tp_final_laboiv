@@ -1,0 +1,89 @@
+<div [@fadeInOut]  class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Mi perfil</h5>
+
+          <div class="form-group text-center">
+            <label for="foto"></label>
+            <img style="height: 500px;" class="img-fluid border border-2" [src]="usuario.foto1" alt="Foto del usuario">
+          </div>
+
+          <div class="form-group text-center">
+            <label for="nombre" class="font-weight-bold"><strong>Nombre:</strong></label>
+            <input style="text-align: center;" type="text" class="form-control" id="nombre" [(ngModel)]="usuario.nombre" readonly>
+          </div>
+
+          <div class="form-group text-center">
+            <label for="apellido" class="font-weight-bold"><strong>Apellido:</strong></label>
+            <input style="text-align: center;" type="text" class="form-control" id="apellido" [(ngModel)]="usuario.apellido" readonly>
+          </div>
+
+          <div class="form-group text-center">
+            <label for="mail" class="font-weight-bold"><strong>Correo electrónico:</strong></label>
+            <input style="text-align: center;" type="email" class="form-control" id="mail" [(ngModel)]="usuario.mail" readonly>
+          </div>
+
+          <div class="form-group text-center">
+            <label for="dni" class="font-weight-bold"><strong>DNI:</strong></label>
+            <input style="text-align: center;" type="text" class="form-control" id="dni" [(ngModel)]="usuario.DNI" readonly>
+          </div>
+
+          <div *ngIf="usuario.rol == 'paciente'" class="form-group text-center">
+            <label for="obraSocial" class="font-weight-bold"><strong>Obra Social:</strong></label>
+            <input style="text-align: center;" type="text" class="form-control" id="obraSocial" [(ngModel)]="usuario.obraSocial" readonly>
+          </div>
+
+          <div *ngIf="usuario.rol == 'especialista'" class="form-group text-center">
+            <label for="especialidad" class="font-weight-bold"><strong>Especialidad/es:</strong></label>
+            <input style="text-align: center;" type="text" class="form-control" id="especialidad" [(ngModel)]="usuario.especialidad" readonly>
+
+            <div style="display: flex; flex-direction: column; align-items: center;" class="buttons-container">
+              <label for=""><br><strong>Horario actual:</strong> {{ usuario.turno === 'mañana' ? 'Tarde (de 14hs a 19hs)' : 'Mañana (de 12hs a 19hs)' }}</label>
+
+              <button style="width: 200px; margin-top: 15px;" class="btn btn-success" (click)="cambiarTurno()">
+                Cambiar a {{ usuario.turno === 'mañana' ? 'Mañana' : 'Tarde' }}
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="usuario.rol == 'paciente'">
+            <h5 class="card-title text-center">Historias clínicas</h5>
+            <div *ngIf="historias && historias.length > 0; else noHistorias">
+              <div *ngFor="let historia of historias; let last = last">
+                <div class="card mt-3" [class.border-bottom]="!last">
+                  <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Fecha: {{ historia.fecha }}</h6>
+                    <div>
+                      <strong>Especialista:</strong> {{ historia.especialista }}<br>
+                      <strong>Altura:</strong> {{ historia.altura }}<br>
+                      <strong>Peso:</strong> {{ historia.peso }}<br>
+                      <strong>Temperatura:</strong> {{ historia.temperatura }}<br>
+                      <strong>Presión:</strong> {{ historia.presion }}<br>
+                      
+                      <strong>Datos Dinámicos:</strong>
+                      <ul>
+                        <ng-container *ngFor="let dato of historia.datosDinamicos">
+                          <ng-container *ngIf="dato.clave !== '' && dato.valor !== ''">
+                            <li>
+                              <strong>{{ dato.clave }}:</strong> {{ dato.valor }}
+                            </li>
+                          </ng-container>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #noHistorias>
+              <p>No hay historias clínicas registradas.</p>
+            </ng-template>
+            <button class="btn btn-primary" (click)="descargarHistoriasComoPDF(historias)">Descargar historia clínica en PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

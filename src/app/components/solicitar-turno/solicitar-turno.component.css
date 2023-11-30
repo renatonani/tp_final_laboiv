@@ -1,0 +1,61 @@
+.contenedor{
+    display: flex;  
+    flex-direction: column;  
+}
+
+.columna{
+    margin-left: 40px;
+}
+
+input{
+    width: 500px;
+    height: 50px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,800&display=swap');
+
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+.botones-container {
+    display: flex;
+    flex-wrap: wrap;    
+  }
+  
+.fecha-button {
+  margin: 5px;
+  width: calc(25% - 10px); /* El 10px representa el espacio entre los botones */
+  text-align: center;
+  border-radius: 5px;
+  background-color: rgb(217, 255, 242);
+}
+  
+  .fecha-button:hover {
+    background-color: rgb(102, 152, 129); /* Color diferente al hacer hover */
+}
+
+.fecha-button.selected {
+  background-color: rgb(102, 152, 129); /* Color cuando el botón está seleccionado */
+}
+
+  .radio-item input[type="radio"] {
+    margin-right: 5px; /* Añade espacio entre el input y el texto */
+  }
+
+  .radio-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .radio-item {
+    width: 25%; /* Define el ancho de cada elemento */
+    text-align: center;
+    margin-bottom: 10px; /* Agrega espacio entre las filas */
+  }
+  
+  .radio-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

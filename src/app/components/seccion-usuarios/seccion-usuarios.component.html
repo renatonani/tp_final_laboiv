@@ -1,4 +1,4 @@
-<div style="margin-left: 30px;" class="registro-container">      
+<div [@fadeInOut] style="margin-left: 30px;" class="registro-container">      
    <!-- Formulario de registro para admins -->
     <div class="left-column">
         <form (ngSubmit)="onSubmit()" [formGroup]="regForm">
@@ -93,9 +93,9 @@
               </li>
             </ul>
           
-            <h2>Pacientes</h2>
+            <h2>Pacientes (click para descargar)</h2>
             <ul class="list-group">
-              <li class="list-group-item" *ngFor="let paciente of pacientes">
+              <li style="cursor: pointer;" (click)="generarYDescargarExcel(paciente)" class="list-group-item" *ngFor="let paciente of pacientes">
                 <img [src]="paciente.foto1" alt="Imagen del paciente" class="user-image">
                 {{ paciente.nombre }} {{ paciente.apellido }}
               </li>
@@ -106,10 +106,20 @@
               <li class="list-group-item" *ngFor="let especialista of especialistas">
                 <img [src]="especialista.foto1" alt="Imagen del especialista" class="user-image">
                 {{ especialista.nombre }} {{ especialista.apellido }}
-                <button (click)="onAccessClick(especialista)" style="margin-top: 10px;" *ngIf="especialista.acceso == false" class="btn btn-success">Aceptar acceso</button>
+                <div>
+                    <!-- Mostrar el botón Aceptar acceso solo si especialista.acceso es false -->
+                    <button *ngIf="!especialista.acceso" (click)="onAccessClick(especialista, true)" style="margin-top: 10px;" class="btn btn-success">Aceptar acceso</button>
+                    
+                    <!-- Mostrar el botón Denegar acceso solo si especialista.acceso es true -->
+                    <button *ngIf="especialista.acceso" (click)="onAccessClick(especialista, false)" style="margin-top: 10px;" class="btn btn-danger">Denegar acceso</button>
+                </div>
               </li>
               
-            </ul>
-        </div>          
+            </ul>            
+        </div>                    
     </div>
+    <div style="margin-right: 200px; margin-top: 30px;">
+        <app-usuarios></app-usuarios>  
+    </div>
+    
 </div>

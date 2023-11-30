@@ -1,28 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Especialista } from 'src/app/clases/especialista';
 import { Paciente } from 'src/app/clases/paciente';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import Swal from 'sweetalert2';
+import { trigger, transition, style, animate, state } from '@angular/animations';
+import { fadeInOut, slideInUp } from 'src/app/app.animations';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  styleUrls: ['./registro.component.css'],
+  animations: [slideInUp]
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit{
 
   regForm : FormGroup;
   regForm2 : FormGroup;
-  tipoRegistro: 'paciente' | 'especialista' = 'paciente';
+  tipoRegistro: string = '';
   paciente : Paciente;
   especialista: Especialista;
   especialidadSeleccionada: string = '';
-
+  especialidades: any;
+  captcha: boolean = false;
   constructor(private formBuilder : FormBuilder,
               private firestore : FirestoreService,
-              private auth : AuthService){
+              private auth : AuthService,
+              private router : Router){
 
     this.regForm = this.formBuilder.group({
       nombre: ['',[ Validators.required]],
@@ -44,7 +50,7 @@ export class RegistroComponent {
       especialidad: ['', []],
       mail: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      foto1: ['', []],      
+      foto1: ['', []],     
     });
     this.paciente = new Paciente(
       "",
@@ -67,10 +73,21 @@ export class RegistroComponent {
       "",
       "",      
     );
+    
   }
 
+
+  async ngOnInit(): Promise<void> {
+    this.especialidades = await this.firestore.getEspecialidades();
+  }
   manejarEspecialidadSeleccionada(especialidad: string) {
-    this.especialidadSeleccionada = especialidad;
+    if (this.especialidadSeleccionada === '') {
+      this.especialidadSeleccionada = especialidad;
+    } else {
+      if (!this.especialidadSeleccionada.includes(especialidad)) {
+        this.especialidadSeleccionada += ", " + especialidad;
+      }
+    }   
   }
   
   onFileSelected(event: any) 
@@ -129,7 +146,7 @@ export class RegistroComponent {
   async onSubmit() {
     if(this.tipoRegistro == "paciente")
     {
-      if(this.regForm.valid && this.paciente.foto1 != "" && this.paciente.foto2 != "")
+      if(this.regForm.valid && this.captcha && this.paciente.foto1 != "" && this.paciente.foto2 != "")
       {
         try{
           const userCredential = await this.auth.register(this.paciente.mail, this.paciente.password);
@@ -142,6 +159,7 @@ export class RegistroComponent {
             text: "Hemos enviado un correo de verificación a tu dirección de correo electrónico.",
             timer: 0
           });
+          this.router.navigateByUrl("/bienvenida")
         }      
         catch(e)
         {
@@ -162,10 +180,8 @@ export class RegistroComponent {
         });
       }
     }
-    else{
-      console.log(this.regForm2.controls)
-      console.log(this.especialista.foto1)
-      if(this.regForm2.valid && this.especialidadSeleccionada && this.especialista.foto1 != "")
+    else{     
+      if(this.regForm2.valid && this.captcha && this.especialidadSeleccionada && this.especialista.foto1 != "")
       {
         const userCredential = await this.auth.register(this.especialista.mail, this.especialista.password);
         this.especialista.especialidad = this.especialidadSeleccionada;
@@ -177,6 +193,7 @@ export class RegistroComponent {
           text: "",
           timer: 2000,
         });
+        this.router.navigateByUrl("/bienvenida")
       }
       else{
         Swal.fire({
@@ -188,4 +205,8 @@ export class RegistroComponent {
       }
     }    
   }  
+  resolved(event: any)
+  {
+    this.captcha = true;
+  }
 }
