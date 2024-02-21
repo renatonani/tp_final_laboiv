@@ -4,7 +4,7 @@
 El proyecto permite emular el funcionamiento de un establecimiento de salud real, contando con diferentes tipos de perfiles, la posibilidad de visualizar los turnos pendientes o los horarios disponibles para un nuevo turno, entre otros.
 Fue realizado como trabajo final de la materia Laboratorio IV de la Tecnicatura Universitaria en Programación en la UTN FRA.
 
-##Link de la clínica: https://clinica-f1e73.web.app/bienvenida
+## Link de la clínica: https://clinica-f1e73.web.app/bienvenida
 
 ## Bienvenida
 
