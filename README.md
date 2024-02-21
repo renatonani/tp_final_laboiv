@@ -1,5 +1,11 @@
 # CLINICA DR. D. NANI
 
+## Bienvenidos a la clínica online.
+El proyecto permite emular el funcionamiento de un establecimiento de salud real, contando con diferentes tipos de perfiles, la posibilidad de visualizar los turnos pendientes o los horarios disponibles para un nuevo turno, entre otros.
+Fue realizado como trabajo final de la materia Laboratorio IV de la Tecnicatura Universitaria en Programación en la UTN FRA.
+
+##Link de la clínica: https://clinica-f1e73.web.app/bienvenida
+
 ## Bienvenida
 
 ![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/3caec8e9-3428-4348-9cde-91857b756c55)
