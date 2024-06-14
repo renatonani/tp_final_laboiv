@@ -34,7 +34,7 @@ Fue realizado como trabajo final de la materia Laboratorio IV de la Tecnicatura 
 
 ![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/d31d423c-400e-4bc5-be73-65acea087100)
 
-##Estadísticas (Sólo admin)
+## Estadísticas (Sólo admin)
 
 ![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/9c8f49d7-8a94-4f8b-9006-29d035151a7e)
 
@@ -50,7 +50,7 @@ Fue realizado como trabajo final de la materia Laboratorio IV de la Tecnicatura 
 
 ![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/b3b9f247-136e-4ccc-bd98-de06bb163cf0)
 
-##Pacientes (Especialista)
+## Pacientes (Especialista)
 
 ![image](https://github.com/renatonani/tp_final_laboiv/assets/98593040/5ba58149-c5e7-446b-ae26-a5ee833a2639)
 
